@@ -1,0 +1,57 @@
+"""
+ rgba
+"""
+"""
+    练习：创建颜色类，数据包含r、g、b、a，实现颜色对象累加。
+"""
+
+
+class Color:
+    def __init__(self, r=0, g=0, b=0, a=0):
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+
+    def __str__(self):
+        return f"r = {self.r} g = {self.g} b = {self.b} a = {self.a}"
+
+    def __add__(self, other):
+        if type(other) == Color:
+            r = self.r + other.r
+            g = self.g + other.g
+            b = self.b + other.b
+            a = self.a + other.a
+            return Color(r, g, b, a)
+        else:
+            r = self.r + other
+            g = self.g + other
+            b = self.b + other
+            a = self.a + other
+            return Color(r, g, b, a)
+
+    def __eq__(self, other):
+        return self.r == other.r and self.g == other.g and self.b == other.b and self.a == other.a
+
+    def __lt__(self, other):
+        return self.a < other.a
+
+
+test01 = Color(12,23,14,26)
+test02 = Color(17,23,19,22)
+print(test01 == test02)
+color_list = [
+    Color(12,23,14,26),
+    Color(12,23,14,26),
+    Color(12,23,14,26),
+    Color(17,23,19,22),
+    Color(23,22,29,81),
+    Color(23,28,17,82)
+]
+color_list.sort()
+print(color_list[0].__dict__)
+color_list.sort(reverse=True)
+print(color_list[0].__dict__)
+print(max(color_list))
+print(test01 in color_list)
+print(color_list.count(test01))
